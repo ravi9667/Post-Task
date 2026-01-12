@@ -1,8 +1,8 @@
-import { blogUsers } from "../Models/blogUsers.js";
+import { postUsers } from "../Models/postUsers.js";
 
 export const fetchUser = async (req, res) => {
     try {
-        const user = await blogUsers.findById(req.user._id, {
+        const user = await postUsers.findById(req.user._id, {
             name: 1,
             email: 1
         });
