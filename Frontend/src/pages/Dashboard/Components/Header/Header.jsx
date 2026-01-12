@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import logo from '../../../../assets/peercoin.png';
-import AddBlog from "../Header/Components/AddBlog/AddBlog"
+import AddPost from "../Header/Components/AddPost/AddPost"
 import Profile from "./Components/Profile/Profile"
 import './Header.scss';
 
-const Header = ({ user, mode, fetchAllBlogs, fetchMyBlogs }) => {
-    const [showAddBlog, setShowAddBlog] = useState(false);
+const Header = ({ user, mode, fetchAllPosts, fetchMyPosts }) => {
+    const [showAddPost, setShowAddPost] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
 
     const getInitials = () => {
@@ -19,20 +19,20 @@ const Header = ({ user, mode, fetchAllBlogs, fetchMyBlogs }) => {
             <div className="header-container">
                 <div className="blogger">
                     <img src={logo} alt="logo" width={35} />
-                    <p>Blogger</p>
+                    <p>Posts</p>
                 </div>
                 <div className="sections">
                     <button
                         className={`all-blogs ${mode === "all" ? "active" : ""}`}
-                        onClick={fetchAllBlogs}
+                        onClick={fetchAllPosts}
                     >
-                        All Blogs
+                        All Posts
                     </button>
                     <button
                         className={`my-blogs ${mode === "mine" ? "active" : ""}`}
-                        onClick={fetchMyBlogs}
+                        onClick={fetchMyPosts}
                     >
-                        My Blogs
+                        My Posts
                     </button>
 
                     <button className="add-blog" onClick={() => setShowAddBlog(true)}>+</button>
@@ -46,7 +46,7 @@ const Header = ({ user, mode, fetchAllBlogs, fetchMyBlogs }) => {
                 </div>
             </div>
 
-            {showAddBlog && <AddBlog onClose={() => setShowAddBlog(false)} onBlogAdded={fetchAllBlogs} />}
+            {showAddPost && <AddPost onClose={() => setShowAddPost(false)} onPostAdded={fetchAllPosts} />}
         </>
     );
 };
