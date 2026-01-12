@@ -8,7 +8,7 @@ const Memories = () => {
             <header>
                 <div>
                     <h2>Hang onto your memories</h2>
-                    <p>Save the moments that matter. Blogger lets you safely store thousands of posts, photos, and more with Google.</p>
+                    <p>Save the moments that matter. Post lets you safely store thousands of posts, photos, and more with Google.</p>
                 </div>
             </header>
             <div className="background">
