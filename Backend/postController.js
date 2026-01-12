@@ -1,37 +1,37 @@
-// blogController.js
-import { blogData } from "../Models/blogDatas.js";
+// postController.js
+import { postData } from "../Models/postDatas.js";
 import mongoose from "mongoose";
 
-// Fetch all blogs (public)
+// Fetch all post (public)
 export const fetchAllBlogs = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 12;
         const skip = (page - 1) * limit;
 
-        const blogs = await blogData
+        const posts = await postData
             .find()
             .populate("userId", "name")
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit);
 
-        const total = await blogData.countDocuments();
+        const total = await postData.countDocuments();
 
         res.send({
             ok: true,
-            data: blogs,
+            data: posts,
             total,
             hasMore: page * limit < total,
         });
     } catch (err) {
         console.error(err);
-        res.status(500).send({ ok: false, message: "Failed to fetch blogs" });
+        res.status(500).send({ ok: false, message: "Failed to fetch posts" });
     }
 };
 
-// Fetch blogs of logged-in user
-export const fetchMyBlogs = async (req, res) => {
+// Fetch post of logged-in user
+export const fetchMyposts = async (req, res) => {
     try {
         if (!req.user || !req.user._id) {
             return res.status(401).send({ ok: false, message: "Unauthorized" });
@@ -47,92 +47,92 @@ export const fetchMyBlogs = async (req, res) => {
 
         console.log(page, limit, skip);
 
-        const blogs = await blogData
+        const posts = await postData
             .find({ userId: userId })
             .populate("userId", "name")
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit);
 
-        console.log("blogs fetched for user:", blogs);
+        console.log("posts fetched for user:", posts);
 
-        const total = await blogData.countDocuments({ userId });
+        const total = await postData.countDocuments({ userId });
 
         res.send({
             ok: true,
-            data: blogs,
+            data: posts,
             total,
             hasMore: page * limit < total,
         });
     } catch (err) {
         console.error(err);
-        res.status(500).send({ ok: false, message: "Failed to fetch user blogs" });
+        res.status(500).send({ ok: false, message: "Failed to fetch user posts" });
     }
 };
 
-// Add new blog
-export const addBlog = async (req, res) => {
+// Add new post
+export const addpost = async (req, res) => {
     try {
         if (!req.user || !req.user._id) {
             return res.status(401).send({ ok: false, message: "Unauthorized" });
         }
 
-        const { topic, blog } = req.body;
+        const { topic, post } = req.body;
         const img = req.file ? req.file.filename : null;
 
-        const newBlog = await blogData.create({
+        const newPost = await postData.create({
             topic,
-            blog,
+            post,
             img,
             userId: new mongoose.Types.ObjectId(req.user._id), // ensure ObjectId type
         });
 
         res.send({
             ok: true,
-            message: "Blog Added Successfully",
-            data: newBlog,
+            message: "post Added Successfully",
+            data: newPost,
         });
     } catch (err) {
         console.error(err);
-        res.status(500).send({ ok: false, message: "Failed to add blog" });
+        res.status(500).send({ ok: false, message: "Failed to add post" });
     }
 };
 
-// Delete a blog
-export const deleteBlog = async (req, res) => {
+// Delete a post
+export const deletePost = async (req, res) => {
     try {
-        const { blogId } = req.body;
+        const { postId } = req.body;
 
-        const deleted = await blogData.deleteOne({
-            _id: blogId,
+        const deleted = await postData.deleteOne({
+            _id: postId,
             userId: new mongoose.Types.ObjectId(req.user._id),
         });
 
         if (!deleted.deletedCount)
-            return res.send({ ok: false, message: "Blog not found or unauthorized" });
+            return res.send({ ok: false, message: "post not found or unauthorized" });
 
-        res.send({ ok: true, message: "Blog deleted" });
+        res.send({ ok: true, message: "post deleted" });
     } catch (err) {
         console.error(err);
         res.status(500).send({ ok: false, message: "Delete failed" });
     }
 };
 
-// Update a blog
-export const updateBlog = async (req, res) => {
+// Update a post
+export const updatePost = async (req, res) => {
     try {
-        const { topic, blog, _id } = req.body;
+        const { topic, post, _id } = req.body;
 
-        const updated = await blogData.findOneAndUpdate(
+        const updated = await postData.findOneAndUpdate(
             { _id, userId: new mongoose.Types.ObjectId(req.user._id) },
-            { $set: { topic, blog } },
+            { $set: { topic, post } },
             { new: true }
         );
 
         if (!updated)
-            return res.send({ ok: false, message: "Not authorized or blog not found" });
+            return res.send({ ok: false, message: "Not authorized or post not found" });
 
-        res.send({ ok: true, message: "Blog updated", data: updated });
+        res.send({ ok: true, message: "post updated", data: updated });
     } catch (err) {
         console.error(err);
         res.status(500).send({ ok: false, message: "Update failed" });
