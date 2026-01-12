@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { blogUsers } from "../Models/blogUsers.js";
+import { postUsers } from "../Models/postUsers.js";
 
 export const signup = async (req, res) => {
     try {
@@ -9,13 +9,13 @@ export const signup = async (req, res) => {
         if (!name || !email || !password)
             return res.send({ ok: false, message: "All fields required" });
 
-        const exists = await blogUsers.findOne({ email });
+        const exists = await postUsers.findOne({ email });
         if (exists)
             return res.send({ ok: false, message: "Email already registered" });
 
         const hashed = await bcrypt.hash(password, 10);
 
-        const user = await blogUsers.create({
+        const user = await postUsers.create({
             name,
             email,
             password: hashed
@@ -43,7 +43,7 @@ export const login = async (req, res) => {
         if (!email || !password)
             return res.status(400).send({ ok: false, message: "All fields required" });
 
-        const user = await blogUsers.findOne({ email });
+        const user = await postUsers.findOne({ email });
         if (!user)
             return res.status(400).send({ ok: false, message: "Email not found" });
 
