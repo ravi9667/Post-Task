@@ -5,7 +5,7 @@ import cors from 'cors'
 
 import authRoutes from "./Routes/authRoutes.js";
 import userRoutes from "./Routes/userRoutes.js";
-import blogRoutes from "./Routes/blogRoutes.js";
+import postRoutes from "./Routes/postRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -15,7 +15,7 @@ app.use(cors());
 app.use("/uploads", express.static("uploads"));
 
 try {
-    const mongoConnect = mongoose.connect("mongodb://localhost:27017/blogs")
+    const mongoConnect = mongoose.connect("mongodb://localhost:27017/posts")
     if(mongoConnect) {
         console.log("DB Conected !!")
     }
@@ -26,7 +26,7 @@ try {
 // routes
 app.use("/", authRoutes);
 app.use("/", userRoutes);
-app.use("/", blogRoutes);
+app.use("/", postRoutes);
 
 const PORT = process.env.PORT || 5555;
 app.listen(PORT, () =>
