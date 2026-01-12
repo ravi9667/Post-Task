@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import blogLogo from "../../../../assets/peercoin.png";
+import postLogo from "../../../../assets/peercoin.png";
 import { useNavigate } from "react-router";
 import "./Header.scss";
 
@@ -19,7 +19,7 @@ const Header = () => {
     return (
         <header className={`header ${isTop ? "top" : "scrolled"}`}>
             <div className="header__logo">
-                <img src={blogLogo} alt="logo" />
+                <img src={postLogo} alt="logo" />
                 <p>Post</p>
             </div>
 
@@ -29,7 +29,7 @@ const Header = () => {
                 ) : (
                     <>
                         <button className="login-btn" onClick={() => navigate('/login')}>Sign in</button>
-                        <button className="create-btn" onClick={() => navigate('/login')}>Create your Blog</button>
+                        <button className="create-btn" onClick={() => navigate('/login')}>Create your post</button>
                     </>
                 )}
             </div>
