@@ -20,7 +20,7 @@ const Header = () => {
         <header className={`header ${isTop ? "top" : "scrolled"}`}>
             <div className="header__logo">
                 <img src={blogLogo} alt="logo" />
-                <p>Blogger</p>
+                <p>Post</p>
             </div>
 
             <div className="header__actions">
