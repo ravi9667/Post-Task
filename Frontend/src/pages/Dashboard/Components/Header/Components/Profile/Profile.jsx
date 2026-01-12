@@ -28,8 +28,8 @@ const Profile = ({ user, onClose }) => {
 
             <hr />
 
-            <button className="menu-item">All Blogs</button>
-            <button className="menu-item">My Blogs</button>
+            <button className="menu-item">All Posts</button>
+            <button className="menu-item">My Posts</button>
             <button className="menu-item">Bookmarks</button>
             <button className="menu-item">Settings</button>
 
