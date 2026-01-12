@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import './AddBlog.scss';
+import './AddPost.scss';
 
-const AddBlog = ({ onClose, onBlogAdded }) => {
+const AddPost = ({ onClose, onPostAdded }) => {
     const [image, setImage] = useState(null);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -19,7 +19,7 @@ const AddBlog = ({ onClose, onBlogAdded }) => {
         formData.append("blog", content);
 
         try {
-            const response = await fetch("http://127.0.0.1:5555/addBlog", {
+            const response = await fetch("http://127.0.0.1:5555/addPost", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -28,17 +28,17 @@ const AddBlog = ({ onClose, onBlogAdded }) => {
             });
 
             const data = await response.json();
-            console.log("Add Blog Res:", data);
+            console.log("Add Post Res:", data);
 
             if (data.ok) {
-                alert("Blog Added Successfully");
-                onBlogAdded();
+                alert("Post Added Successfully");
+                onPostAdded();
                 onClose();
             } else {
                 alert(data.message);
             }
         } catch (error) {
-            console.error("Error adding blog:", error);
+            console.error("Error adding Post:", error);
             alert("Something went wrong");
         }
     };
@@ -46,26 +46,26 @@ const AddBlog = ({ onClose, onBlogAdded }) => {
     return (
         <div className="add-blog-overlay">
             <div className="add-blog-modal">
-                <h2>Add New Blog</h2>
+                <h2>Add New Post</h2>
 
                 <form onSubmit={handleSubmit}>
-                    <label>Blog Image:</label>
+                    <label>Post Image:</label>
                     <input type="file" accept="image/*" onChange={handleImageChange} />
 
-                    <label>Blog Heading:</label>
+                    <label>Post Heading:</label>
                     <input
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        placeholder="Enter blog title"
+                        placeholder="Enter Post title"
                         required
                     />
 
-                    <label>Blog Content:</label>
+                    <label>Post Content:</label>
                     <textarea
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
-                        placeholder="Write your blog..."
+                        placeholder="Write your Post..."
                         rows="6"
                         required
                     ></textarea>
@@ -85,4 +85,4 @@ const AddBlog = ({ onClose, onBlogAdded }) => {
     );
 };
 
-export default AddBlog;
+export default AddPost;
