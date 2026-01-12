@@ -66,11 +66,11 @@ const Signup = () => {
                 <div className="signup-card">
                     <div className="blogger">
                         <img src={logo} alt="Blogger-logo" width={40} height={40} />
-                        <h1 className="blogger-Heading">Blogger</h1>
+                        <h1 className="blogger-Heading">Post</h1>
                     </div>
                     <div>
                         <h1>Create Account</h1>
-                        <p>Join Blogger today</p>
+                        <p>Join Posts today</p>
                     </div>
 
                     <div className="input-group group-1">
