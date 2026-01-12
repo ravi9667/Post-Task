@@ -71,11 +71,11 @@ const Login = () => {
                     <div className="login-card">
                         <div className="blogger">
                             <img src={logo} alt="Blogger-logo" width={40} height={40} />
-                            <h1 className="blogger-Heading">Blogger</h1>
+                            <h1 className="blogger-Heading">Post</h1>
                         </div>
                         <div>
                             <h1>Sign In</h1>
-                            <p>Continue to Blogger</p>
+                            <p>Continue to Posts</p>
                         </div>
                         <div className="input-group group-1">
                             <img src={userIcon} alt="" className="user-icon" />
