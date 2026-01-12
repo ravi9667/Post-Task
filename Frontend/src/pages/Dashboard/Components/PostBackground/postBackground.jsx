@@ -1,15 +1,15 @@
 import React from "react";
-import './BlogBackground.scss'
+import './PostBackground.scss'
 
-const BlogBackground = () => {
+const PostBackground = () => {
 
     return (
         <div className="background-container">
-            <h1>Welcome to Our Blog</h1>
+            <h1>Welcome to Our Post</h1>
             <p>Discover insightful articles, updates and stories for curious minds.</p>
             <button>Read More</button>
         </div>
     )
 }
 
-export default BlogBackground;
+export default PostBackground;
