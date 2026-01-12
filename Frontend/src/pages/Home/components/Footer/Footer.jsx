@@ -1,5 +1,5 @@
 import React from "react";
-import blogLogo from '../../../../assets/peercoin.png'
+import postLogo from '../../../../assets/peercoin.png'
 import './Footer.scss'
 
 const Footer = () => {
@@ -7,14 +7,14 @@ const Footer = () => {
         <div className="footer">
             <div className="footer-content">
                 <div className="footer-logo">
-                    <img src={blogLogo} alt="Blogger Logo" />
-                    <p>Blogger</p>
+                    <img src={postLogo} alt="Post Logo" />
+                    <p>Post</p>
                 </div>
 
                 <div className="footer-links">
                     <div>
                         <h4>About</h4>
-                        <p>Learn more about Blogger and how you can share your passions with the world.</p>
+                        <p>Learn more about Posts and how you can share your passions with the world.</p>
                     </div>
 
                     <div>
@@ -40,7 +40,7 @@ const Footer = () => {
             </div>
 
             <div className="footer-bottom">
-                <p>© {new Date().getFullYear()} Blogger — All Rights Reserved.</p>
+                <p>© {new Date().getFullYear()} Post — All Rights Reserved.</p>
                 <p>Made with ❤️ using React</p>
             </div>
         </div>
