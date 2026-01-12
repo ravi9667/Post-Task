@@ -10,8 +10,8 @@ const Hero = () => {
         <div className="section hero">
             <header className="hero-header">
                 <h2>Publish your passions, your way</h2>
-                <p>Create a unique and beautiful blog easily.</p>
-                <button onClick={() => navigate('/login')}>CREATE YOUR BLOG</button>
+                <p>Create a unique and beautiful Post easily.</p>
+                <button onClick={() => navigate('/login')}>CREATE YOUR POST</button>
             </header>
             <div className="hero-background">
                 <div className="theme red">
