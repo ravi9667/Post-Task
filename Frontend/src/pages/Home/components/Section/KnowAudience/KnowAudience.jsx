@@ -8,7 +8,7 @@ const KnowAudience = () => {
             <header>
                 <div>
                     <h2>Know your audience</h2>
-                    <p>Find out which posts are a hit with Blogger’s built-in analytics. You’ll see where your audience is coming from and what they’re interested in. You can even connect your blog directly to Google Analytics for a more detailed look.</p>
+                    <p>Find out which posts are a hit with Post’s built-in analytics. You’ll see where your audience is coming from and what they’re interested in. You can even connect your blog directly to Google Analytics for a more detailed look.</p>
                 </div>
             </header>
             <div className="background">
