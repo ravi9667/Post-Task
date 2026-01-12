@@ -1,17 +1,17 @@
 import mongoose from "mongoose";
 
-const blogDataSchema = mongoose.Schema({
+const postDataSchema = mongoose.Schema({
     topic: {
         type: String,
         required: true
     },
-    blog: {
+    post: {
         type: String,
         required: true
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'blogUser',
+        ref: 'postUser',
         required: true
     },
     createdAt: {
@@ -23,4 +23,4 @@ const blogDataSchema = mongoose.Schema({
     }
 })
 
-export const blogData = mongoose.model("blogData", blogDataSchema)
+export const postData = mongoose.model("postData", postDataSchema)
